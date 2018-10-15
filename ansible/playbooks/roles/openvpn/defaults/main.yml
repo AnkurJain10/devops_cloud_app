@@ -1,0 +1,14 @@
+ovpn_cidr: 10.3.0.0/24
+ovpn_network: 10.3.0.0 255.255.255.0
+ovpn_push_routes :
+  - 172.30.0.0 255.255.0.0
+
+ca_dir: /home/ubuntu/ca
+
+ca_key_country: US
+ca_key_province: Maryland
+ca_key_city: Rockville
+ca_key_org: UMCP
+ca_key_email: ankur10@terpmail.umd.edu
+ca_key_org_unit: DevOps
+ca_key_name: vpn_server

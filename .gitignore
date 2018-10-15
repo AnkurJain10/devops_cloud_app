@@ -1,19 +1,21 @@
-#  Local .terraform directories
+### Terraform
 **/.terraform/*
-
-# .tfstate files
 *.tfstate
 *.tfstate.*
-
-# .tfvars files
-*.tfvars
-
-**/.DS_Store
-
 **/*.pem
 **/*.pub
 
-
-**/actual*
-
+### Ansible
 **/*.retry
+
+### Custom
+ansible/playbooks/host_vars/*
+!ansible/playbooks/host_vars/.gitkeep
+ansible/playbooks/group_vars/*
+!ansible/playbooks/group_vars/.gitkeep
+ansible/playbooks/roles/openvpn/default/main.yml
+ansible/ansible_inventory
+terraform/terraform.tfvars
+
+**/.DS_Store
+**/actual*

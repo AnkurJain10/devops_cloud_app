@@ -3,8 +3,8 @@ import smtplib
 import re
 
 from email.mime.text import MIMEText
-disk_threshold = 10
-cpu_threshold = 10
+disk_threshold = 90
+cpu_threshold = 80
 partition = "/"
 
 def report_disk_via_email(usage):
