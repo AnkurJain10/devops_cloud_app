@@ -1,0 +1,7 @@
+[application]
+54.165.25.180
+
+[application:vars]
+ansible_ssh_private_key_file=~/temp_app.pem
+ansible_user=ubuntu
+ansible_python_interpreter=/usr/bin/python3

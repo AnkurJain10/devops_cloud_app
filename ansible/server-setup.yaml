@@ -1,0 +1,25 @@
+- hosts: application
+  gather_facts: False
+  become: yes
+
+  tasks:
+    - name: Nginx setup
+      apt: pkg=nginx state=present update_cache=true
+      notify:
+        - start nginx
+
+    - name: copy index.html
+      copy: src=index.html dest=/usr/share/nginx/html/index.html mode=0644
+
+    - name: copy cpu and disk monitoring job in server
+      copy: src=../scripts/monitoring.py dest=/usr/bin/monitoring.py mode=755
+
+    - name: Create a cron job for monitoring
+      cron: 
+        name: disk and cpu monitoring
+        minute: 5
+        job: "python3 /usr/bin/monitoring.py"
+
+  handlers:
+    - name: start Nginx
+      service: name=nginx state=started
