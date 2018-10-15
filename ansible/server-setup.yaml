@@ -17,8 +17,8 @@
     - name: Create a cron job for monitoring
       cron: 
         name: disk and cpu monitoring
-        minute: 5
-        job: "python3 /usr/bin/monitoring.py"
+        minute: "*/5"
+        job: "/usr/bin/python3 /usr/bin/monitoring.py >> /var/log/cron_monitoring_error.log  2>&1"
 
   handlers:
     - name: start Nginx
