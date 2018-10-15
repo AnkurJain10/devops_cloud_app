@@ -1,6 +1,5 @@
 import subprocess
 import smtplib
-import sys
 import re
 
 from email.mime.text import MIMEText
