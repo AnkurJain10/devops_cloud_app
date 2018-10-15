@@ -18,7 +18,7 @@
       copy: src=../index.html dest=/var/www/html/index.html mode=0644
 
     - name: copy cpu and disk monitoring job in server
-      copy: src=../../scripts/actual_monitoring.py dest=/usr/bin/monitoring.py mode=755
+      copy: src=../../scripts/monitoring.py dest=/usr/bin/monitoring.py mode=755
 
     - name: Create a cron job for monitoring
       cron: 
