@@ -11,8 +11,8 @@ Repository to deploy a Web Application, Nginx and a private VPN with OpenVPN and
 ### 2) Create a ssh key-pair to access the EC2 instance
 
 ```bash 
-ssh-keygen -t rsa -C "your.email@example.com" -b 4096 `
-chmod 400 ~/.ssh/app
+ssh-keygen -t rsa -C "your.email@example.com" -b 4096 -f ~/app_key -N ""`
+chmod 400 ~/app_key
 ```
 
 ## Configuration
@@ -27,8 +27,8 @@ cidrs     = {
   private = "172.30.1.0/24" # The private subnet CIDR
 }
 
-app_public_key_path   = "~/app.pub" # Path to your local ssh key pair (from step 3)
-app_private_key_path   = "~/app.pem" # Path to your local ssh key pair (from step 3)
+app_public_key_path   = "~/app_key.pub" # Path to your local ssh key pair (from step 3)
+app_private_key_path   = "~/app_key" # Path to your local ssh key pair (from step 3)
 app_user = "ubuntu"
 app_python_interpreter = "/usr/bin/python3"
 aws_app_instance_type = "t2.micro"
