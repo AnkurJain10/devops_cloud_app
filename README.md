@@ -36,7 +36,21 @@ aws_app_ami     = "ami-059eeca93cf09eebd"
 ovpn_port      = "1194" # The OpenVPN port
 ```
 
-### 2) Create a file */ansible/playbooks/roles/openvpn/default/main.yml*
+### 2) Create an S3 bucket and a file */terraform/backend.tf*
+This is being used to store your terraform's tfstate files in s3 bucket so that it is more secure, version controlled and not lost in case of deletion.
+
+```bash
+terraform {
+  backend "s3" {
+    bucket = "tfbackend" # S3 bucket-name
+    key    = "web-app2/application.tfstate" # Folder and file name where tfstate will be stored
+    region = "us-east-1" # S3 bucket region
+    profile = "aws-orion" # aws-profile related to the S3 bucket. Can be a different one compared to where your application is being deployed to
+  }
+}
+```
+
+### 3) Create a file */ansible/playbooks/roles/openvpn/default/main.yml*
 ```yml
 ovpn_cidr: 10.3.0.0/24
 ovpn_network: 10.3.0.0 255.255.255.0
