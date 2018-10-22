@@ -8,11 +8,28 @@
         upgrade: yes
         update_cache: yes
         force_apt_get: yes
+        
+    - name: Install docker python package.
+      pip:
+        name: docker  
 
-    - name: Nginx setup
-      apt: pkg=nginx state=present update_cache=true
-      notify:
-        - start nginx
+    - name: Install docker-compose python package.
+      pip:
+        name: docker-compose        
+
+    - name: Install PyYAML python package.
+      pip:
+        name: PyYAML
+
+    - name: Ansible copy nginx directory to the remote server
+      copy:
+        src: ../../nginx/
+        dest: /home/ubuntu/docker-nginx
+
+    - name: install nginx and it's add-on services as docker containers
+      docker_service:
+        project_src: /home/ubuntu/docker-nginx
+      register: output
 
     - name: copy index.html
       copy: src=../index.html dest=/var/www/html/index.html mode=0644
@@ -26,6 +43,4 @@
         minute: "*/5"
         job: "/usr/bin/python3 /usr/bin/monitoring.py >> /var/log/cron_monitoring_error.log  2>&1"
 
-  handlers:
-    - name: start nginx
-      service: name=nginx state=started
+

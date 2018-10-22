@@ -1,0 +1,6 @@
+- name: Configure app server with Docker
+  hosts: vpn_public
+  become: True
+
+  roles:
+    - { role: "nickjj.docker", tags: ["docker"] }
